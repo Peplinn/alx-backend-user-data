@@ -22,17 +22,22 @@ if AUTH_TYPE == 'auth':
 
 @app.before_request
 def before_request():
-    paths = ['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']
-    checked_paths = [p.rstrip('/') for p in paths]
+    """_summary_
 
-    if request is None:
-        return
-    elif not auth.require_auth(request.path, paths):
-        return
-    elif auth.authorization_header(request) is None:
-        abort(401)
-    elif auth.current_user(request) is None:
-        abort(403)
+    Returns:
+        _type_: _description_
+    """
+    paths = ['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']
+    # checked_paths = [p.rstrip('/') for p in paths]
+
+    if auth is None:
+        pass
+    else:
+        if auth.require_auth(request.path, paths):
+            if auth.authorization_header(request) is None:
+                abort(401, description="Unauthorized")
+            if auth.current_user(request) is None:
+                abort(403, description='Forbidden')
 
 
 @app.errorhandler(404)
