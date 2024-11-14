@@ -40,7 +40,7 @@ class SessionExpAuth(SessionAuth):
             return None
         session_info = {
             "user_id": user_id,
-            "created_at": datetime.datetime.now()
+            "created_at": datetime.now()
         }
         self.user_id_by_session_id[session_id] = session_info
         return session_id
