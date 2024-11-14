@@ -35,8 +35,7 @@ def before_request():
         _type_: _description_
     """
     paths = ['/api/v1/status/', '/api/v1/unauthorized/',
-              '/api/v1/forbidden/', '/api/v1/auth_session/login/']
-    # checked_paths = [p.rstrip('/') for p in paths]
+             '/api/v1/forbidden/', '/api/v1/auth_session/login/']
 
     if auth is None:
         pass
