@@ -7,6 +7,7 @@ import os
 from datetime import datetime, timedelta
 from api.v1.auth.session_auth import SessionAuth
 
+TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 class SessionExpAuth(SessionAuth):
     """
@@ -40,7 +41,7 @@ class SessionExpAuth(SessionAuth):
             return None
         session_info = {
             "user_id": user_id,
-            "created_at": datetime.now()
+            "created_at": datetime.now().strftime(TIMESTAMP_FORMAT)
         }
         self.user_id_by_session_id[session_id] = session_info
         return session_id
