@@ -9,6 +9,7 @@ from api.v1.auth.session_auth import SessionAuth
 
 TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S"
 
+
 class SessionExpAuth(SessionAuth):
     """
     SessionExpAuth class that manages session expiration.
